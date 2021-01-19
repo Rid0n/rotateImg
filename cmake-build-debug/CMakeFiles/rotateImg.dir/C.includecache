@@ -32,3 +32,13 @@ bmp.h
 image.h
 /home/sergey/CLionProjects/rotateImg/image.h
 
+/home/sergey/CLionProjects/rotateImg/util.c
+stdarg.h
+-
+stdio.h
+-
+stdlib.h
+-
+inttypes.h
+-
+
