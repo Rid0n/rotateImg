@@ -48,12 +48,15 @@ struct __attribute__((packed)) bmp_header
 {
     FOR_BMP_HEADER( DECLARE_FIELD )
 };
-
-
+uint32_t get_padding_bmp(uint32_t width);
+void create_header_bmp(struct bmp_header* h,uint32_t padding,uint32_t biWidth,uint32_t biHeight);
 void bmp_header_print( struct bmp_header const* header, FILE* f );
 bool read_header( FILE* f, struct bmp_header* header );
 bool read_header_from_file( const char* filename, struct bmp_header* header );
-enum write_status to_bmp(const char* path,struct bmp_header header,const struct image image);
-enum read_status from_bmp ( FILE* in, struct image* image,struct bmp_header* header);
+enum write_status to_bmp(FILE * file,const struct image image);
+enum read_status from_bmp ( FILE* in, struct image* image);
+FILE* open_bmp(const char* path, const char* mode);
+void close_bmp(FILE* file);
+
 
 #endif //ROTATEIMG_BMP_H

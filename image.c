@@ -10,7 +10,12 @@
 
 
 
+void swap_image_sizes(struct image* image){
+    uint32_t a = image->height;
+    image->height=image->width;
+    image->width=a;
 
+}
 
 
 //malloc
@@ -33,7 +38,20 @@ struct image image_init (uint64_t width,uint64_t height){
     */
     struct image image = { width,height,pixel_array };
     return image;
-} //-> image with dimensions
+
+}
+struct image image_with_padding_init(uint64_t width,uint64_t height,uint32_t padding){
+    struct pixel* pixel_array = malloc( (sizeof(struct pixel) * width+padding) * height) ;
+
+    /*
+    for (size_t i = 0;i< width*height; i++){
+        pixel_array[i] = pixel_init(data[i]);
+    }
+    */
+    struct image image = { width,height,pixel_array };
+    return image;
+
+}
 void free_pixel_array(struct pixel* array){
     free(array);
 }
@@ -46,9 +64,7 @@ void free_pixel_double_array(struct pixel** array, uint32_t height){
 void free_image(struct image* image) {
     free_pixel_array(image->data);
 }
-// func remake array
 
-//
 struct pixel** pixel_array_to_double_array(struct pixel* pixel_array,uint64_t width, uint64_t height){
     struct pixel** marray = malloc ( sizeof(struct pixel*) * height);
     for (size_t i = 0; i < height;i++){
@@ -79,10 +95,7 @@ struct pixel* double_array_to_pixel_array(struct pixel** pixel_array,uint64_t wi
     return array_pixel;
 }
 
-
-
-
-struct pixel** rotateCCW(const struct pixel** source, uint32_t width, uint32_t height) {
+struct pixel** rotateCW(struct pixel const** source, uint32_t width, uint32_t height) {
 
     struct pixel** rotated_array = init_double_array(height,width);
 /*
@@ -91,9 +104,9 @@ struct pixel** rotateCCW(const struct pixel** source, uint32_t width, uint32_t h
     }
 */
 
-    for (size_t i = 0; i < height; i++) {
-        for (size_t j = 0; j < width; j++) {// is it width - 1? || is the last element in row
-            rotated_array[j][i] = source[(height - 1) - i][j]; // indecies suck
+    for (size_t i = 0; i < width; i++) {
+        for (size_t j = 0; j < height; j++) {
+            rotated_array[i][j] = source[j][width-i-1];
         }
     }
 
@@ -102,18 +115,18 @@ struct pixel** rotateCCW(const struct pixel** source, uint32_t width, uint32_t h
 
 }
 
-struct pixel** rotateCW(const struct pixel** source, uint32_t width, uint32_t height) {
+struct pixel** rotateCCW(struct pixel const** source, uint32_t width, uint32_t height) {
 
     struct pixel** rotated_array = init_double_array(height,width);
 /*
     for (size_t i = 0; i < source->height * source->width; i++) {
-        flipped[iHELLO] = source->data[HELLOi]; // formula is derived || no its not i am a silly stinky dummy
+        flipped[iHELLO] = source->data[HELLOi];
     }
 */
 
-    for (size_t i = 0; i < height; i++) {
-        for (size_t j = 0; j < width; j++) {// is it width - 1? || is the last element in row
-            rotated_array[j][height-i-1] = source[i][j]; // indecies suck
+    for (size_t i = 0; i < width; i++) {
+        for (size_t j = 0; j < height; j++) {
+            rotated_array[i][j] = source[height-j-1][i];
         }
     }
 

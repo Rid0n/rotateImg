@@ -16,9 +16,7 @@ void bmp_header_print( struct bmp_header const* header, FILE* f ) {
    FOR_BMP_HEADER( PRINT_FIELD )
 }
 
-bool read_header( FILE* f, struct bmp_header* header ) {
-    return fread( header, sizeof( struct bmp_header ), 1, f );
-}
+
 
 bool read_header_from_file( const char* filename, struct bmp_header* header ) {
     if (!filename) return false;

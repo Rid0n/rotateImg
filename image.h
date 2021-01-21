@@ -33,8 +33,10 @@ void free_image(struct image* image);
 struct pixel** pixel_array_to_double_array(struct pixel* pixel_array,uint64_t width, uint64_t height);
 struct pixel* double_array_to_pixel_array(struct pixel** pixel_array,uint64_t width,uint64_t height);
 struct pixel** init_double_array(uint32_t width,uint32_t height);
-struct pixel** rotateCCW(const struct pixel** source, uint32_t width, uint32_t height);
-struct pixel** rotateCW(const struct pixel** source, uint32_t width, uint32_t height);
+struct pixel** rotateCCW(struct pixel const ** source, uint32_t width, uint32_t height);
+struct pixel** rotateCW(struct pixel const ** source, uint32_t width, uint32_t height);
+struct image image_with_padding_init(uint64_t width,uint64_t height,uint32_t padding);
+void swap_image_sizes(struct image* image);
 
 
 #endif //ROTATEIMG_IMAGE_H

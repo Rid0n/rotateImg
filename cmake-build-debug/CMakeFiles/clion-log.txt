@@ -1,4 +1,1 @@
-/snap/clion/138/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/sergey/CLionProjects/rotateImg
--- Configuring done
--- Generating done
--- Build files have been written to: /home/sergey/CLionProjects/rotateImg/cmake-build-debug
+CMakeLists.txt not found in /home/sergey/CLionProjects/rotateImg Select CMakeLists.txt
