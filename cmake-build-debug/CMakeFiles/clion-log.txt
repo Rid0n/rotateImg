@@ -1,1 +1,0 @@
-CMakeLists.txt not found in /home/sergey/CLionProjects/rotateImg Select CMakeLists.txt
