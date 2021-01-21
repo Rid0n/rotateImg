@@ -45,7 +45,6 @@ enum write_status to_bmp(FILE * file,const struct image image) { // remove heade
     uint32_t padding = get_padding_bmp(image.width);//into one || width is passed
 
     create_header_bmp(&new_header,padding,image.width,image.height);
-    bmp_header_print(&new_header,stdout);
 
     if (!file) return WRITE_ERROR;
     if(!fwrite(&new_header, sizeof(struct bmp_header), 1, file)) return WRITE_ERROR;
@@ -73,8 +72,6 @@ enum read_status from_bmp( FILE* in, struct image* image){
             if (fseek(in, padding, SEEK_CUR) != 0) return READ_INVALID_BITS;
 
         }
-        //bool num_read = fread(image->data, sizeof(struct pixel)*header.biWidth*header.biHeight,1,in);
-        //if (!num_read) return READ_INVALID_BITS;
         return READ_OK;
     }
     else {

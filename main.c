@@ -49,11 +49,11 @@ int main(int argc, char** argv ) {
     FILE *out = open_bmp(path, "wb");
 
     if(to_bmp(out,image)) {
-        printf("Couldn't save file!");
+        printf("Couldn't save file! \n");
 
     }
     else {
-        printf("Saved!");
+        printf("Saved! \n");
     }
     close_bmp(out);
 
